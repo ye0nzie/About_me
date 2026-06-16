@@ -1,0 +1,277 @@
+/* ==================== GENERAL STYLES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0b0f19;
+    color: #f8fafc;
+    overflow-x: hidden;
+}
+section {
+    min-height: 100vh;
+    padding: 120px 10% 80px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #38bdf8; 
+    font-weight: 800;
+}
+
+/* ==================== STICKY HEADER ==================== */
+header {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    top: 25px;
+    width: 60%; 
+    padding: 15px 40px;
+    background-color: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 50px; 
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+header.sticky {
+    top: 0;
+    width: 100%;
+    border-radius: 0; 
+    padding: 20px 10%;
+    background-color: rgba(11, 15, 25, 0.95);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    left: 50%;
+    transform: translateX(-50%); 
+}
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav a {
+    color: #94a3b8;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+nav a:hover {
+    color: #2dd4bf;
+}
+
+/* ==================== HOMEPAGE SECTION ==================== */
+#home {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+.hero-text h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #38bdf8, #2dd4bf); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-text p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    line-height: 1.7;
+}
+.hero-photo {
+    width: 300px;
+    height: 400px;
+    background-color: #141b2d;
+    border-radius: 24px;
+    border: 2px dashed rgba(56, 189, 248, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+}
+
+/* ==================== ABOUT SECTION (DITAROH DI KANAN) ==================== */
+.about-split {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 50px;
+}
+.about-left {
+    flex: 1;
+}
+.about-right {
+    flex: 1.5;
+    font-size: 1.2rem;
+    color: #cbd5e1;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* ==================== PORTOFOLIO SECTION (SPREAD SISI & JUDUL DI TENGAH-TENGAH) ==================== */
+.portfolio-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr; /* Kolom tengah agak lebar buat wadah judul */
+    grid-template-rows: auto auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    min-height: 70vh;
+}
+.portfolio-center-title {
+    grid-column: 2;
+    grid-row: 1 / span 2; /* Menghabiskan baris 1 dan 2 agar pas di tengah-tengah y */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+.portfolio-center-title h2 {
+    margin-bottom: 0; /* Hapus margin bawaan biar simetris x & y */
+    font-size: 3rem;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+/* Pemetaan Grid Card Menyebar */
+.card-lt { grid-column: 1; grid-row: 1; }
+.card-rt { grid-column: 3; grid-row: 1; }
+.card-lb { grid-column: 1; grid-row: 2; }
+.card-rb { grid-column: 3; grid-row: 2; }
+
+/* ==================== GLOW CARD SYSTEM ==================== */
+.glow-card {
+    background-color: #141b2d;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+.glow-card:hover {
+    transform: scale(1.05); 
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                0 0 25px rgba(56, 189, 248, 0.25); 
+}
+.glow-card h3 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    color: #f1f5f9;
+}
+.glow-card:hover h3 {
+    color: #38bdf8; 
+}
+.glow-card p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ==================== VOLUNTEERS SECTION ==================== */
+.volunteer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+.role-date {
+    font-size: 0.85rem;
+    color: #2dd4bf;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* ==================== HOBBIES SECTION ==================== */
+.hobbies-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+.hobby-card {
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+}
+.hobby-desc {
+    font-size: 0.85rem; 
+    margin-top: 5px;
+    color: #64748b;
+}
+
+/* ==================== FOOTER SECTION ==================== */
+footer {
+    background-color: #070a12;
+    border-top: 1px solid rgba(56, 189, 248, 0.1);
+    padding: 40px 10%;
+    margin-top: 60px;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.footer-content p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+.footer-links a:hover {
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+/* ==================== RESPONSIVE LAYOUT (MOBILE OPTIMIZATION) ==================== */
+@media (max-width: 992px) {
+    #home { flex-direction: column-reverse; text-align: center; justify-content: center; }
+    .about-split { flex-direction: column; gap: 20px; }
+    .portfolio-container { 
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto;
+    }
+    .portfolio-center-title { 
+        grid-column: 1; grid-row: 1; 
+        margin-bottom: 20px;
+    }
+    .card-lt, .card-rt, .card-lb, .card-rb { grid-column: 1; grid-row: auto; }
+    .volunteer-grid { grid-template-columns: 1fr; }
+    .hobbies-container { grid-template-columns: repeat(2, 1fr); }
+    header { width: 90%; }
+}
+
+/* ==================== ANIMATION INTERSECTION OBSERVER ==================== */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
