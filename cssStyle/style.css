@@ -1,4 +1,4 @@
-/* ==================== GENERAL STYLES ==================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -25,7 +25,7 @@ h2 {
     font-weight: 800;
 }
 
-/* ==================== STICKY HEADER ==================== */
+
 header {
     position: fixed;
     left: 50%;
@@ -71,7 +71,7 @@ nav a:hover {
     color: #2dd4bf;
 }
 
-/* ==================== HOMEPAGE SECTION ==================== */
+
 #home {
     flex-direction: row;
     align-items: center;
@@ -103,7 +103,7 @@ nav a:hover {
     color: #64748b;
 }
 
-/* ==================== ABOUT SECTION (DITAROH DI KANAN) ==================== */
+
 .about-split {
     display: flex;
     flex-direction: row;
@@ -122,37 +122,100 @@ nav a:hover {
     text-align: justify;
 }
 
-/* ==================== PORTOFOLIO SECTION (SPREAD SISI & JUDUL DI TENGAH-TENGAH) ==================== */
-.portfolio-container {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr; /* Kolom tengah agak lebar buat wadah judul */
-    grid-template-rows: auto auto;
-    gap: 40px;
-    align-items: center;
-    position: relative;
-    min-height: 70vh;
-}
-.portfolio-center-title {
-    grid-column: 2;
-    grid-row: 1 / span 2; /* Menghabiskan baris 1 dan 2 agar pas di tengah-tengah y */
-    text-align: center;
+/* ==================== PORTOFOLIO SECTION (FIXED SPREAD SYSTEM) ==================== */
+#portfolio {
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 5;
+    justify-content: center;
+    position: relative;
 }
+
+.portfolio-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 600px; /* Kunci: Berikan tinggi pasti agar koordinat Y bisa dihitung presisi */
+    position: relative;
+    display: block; /* Matikan grid lama agar tidak bentrok */
+}
+
+/* Judul Mengunci Mutlak di Tengah-Tengah X dan Y */
+.portfolio-center-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    width: auto;
+}
+
 .portfolio-center-title h2 {
-    margin-bottom: 0; /* Hapus margin bawaan biar simetris x & y */
+    margin-bottom: 0;
     font-size: 3rem;
-    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    white-space: nowrap; /* Mencegah judul patah jadi 2 baris */
 }
-/* Pemetaan Grid Card Menyebar */
+
+/* Koordinat Presisi untuk 4 Cards Menyebar (Menggunakan Lebar Proporsional) */
+.card-lt { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38%;
+}
+
+.card-rt { 
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 38%;
+}
+
+.card-lb { 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 38%;
+}
+
+.card-rb { 
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 38%;
+}
+
+/* KONDISI RESPONSIVE: Kalau dibuka di HP, otomatis balik jadi 1 kolom vertikal rapi */
+@media (max-width: 992px) {
+    .portfolio-container {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .portfolio-center-title {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin-bottom: 30px;
+    }
+    .card-lt, .card-rt, .card-lb, .card-rb {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+    }
+}
+
 .card-lt { grid-column: 1; grid-row: 1; }
 .card-rt { grid-column: 3; grid-row: 1; }
 .card-lb { grid-column: 1; grid-row: 2; }
 .card-rb { grid-column: 3; grid-row: 2; }
 
-/* ==================== GLOW CARD SYSTEM ==================== */
 .glow-card {
     background-color: #141b2d;
     border-radius: 20px;
@@ -181,7 +244,6 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* ==================== VOLUNTEERS SECTION ==================== */
 .volunteer-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -194,7 +256,6 @@ nav a:hover {
     font-weight: 600;
 }
 
-/* ==================== HOBBIES SECTION ==================== */
 .hobbies-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -212,7 +273,6 @@ nav a:hover {
     color: #64748b;
 }
 
-/* ==================== FOOTER SECTION ==================== */
 footer {
     background-color: #070a12;
     border-top: 1px solid rgba(56, 189, 248, 0.1);
@@ -246,7 +306,6 @@ footer {
     text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
-/* ==================== RESPONSIVE LAYOUT (MOBILE OPTIMIZATION) ==================== */
 @media (max-width: 992px) {
     #home { flex-direction: column-reverse; text-align: center; justify-content: center; }
     .about-split { flex-direction: column; gap: 20px; }
@@ -264,7 +323,6 @@ footer {
     header { width: 90%; }
 }
 
-/* ==================== ANIMATION INTERSECTION OBSERVER ==================== */
 .fade-in-section {
     opacity: 0;
     transform: translateY(40px);
